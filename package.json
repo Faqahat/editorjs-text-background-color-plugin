@@ -1,6 +1,6 @@
 {
   "name": "editorjs-text-background-color-plugin",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "An inline tool for changing text and background colors in Editor.js",
   "main": "dist/bundle.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/faqahat/editorjs-text-color-plugin.git"
+    "url": "git+https://github.com/faqahat/editorjs-text-background-color-plugin.git"
   },
   "keywords": [
     "editorjs",
@@ -23,9 +23,9 @@
   "author": "M Waleed",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/faqahat/editorjs-text-color-plugin/issues"
+    "url": "https://github.com/faqahat/editorjs-text-background-color-plugin/issues"
   },
-  "homepage": "https://github.com/faqahat/editorjs-text-color-plugin#readme",
+  "homepage": "https://github.com/faqahat/editorjs-text-background-color-plugin#readme",
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
