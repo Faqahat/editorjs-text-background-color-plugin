@@ -788,7 +788,7 @@ class TextColorTool {
    */
   getIcon() {
     // Use a default dark color instead of "currentColor" to avoid inheriting active state color
-    const textColor = this.currentTextColor || "#333333";
+    const textColor = this.currentTextColor || "currentColor";
     const backgroundColor = this.currentBackgroundColor || "transparent";
 
     return `
