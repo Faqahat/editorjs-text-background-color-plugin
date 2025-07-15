@@ -4,6 +4,8 @@ A versatile inline tool for [Editor.js](https://editorjs.io/) that allows you to
 
 <img src="https://shottr-uploads.s3.amazonaws.com/548/FCJU-SCR-20250715-qf0.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASHY5OHU5UIVLCXXR%2F20250715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250715T131824Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Signature=66cc08fff17d1651b143ed258748af520c91774f512289d4512aaca109c0ea24" alt="Plugin Demo" width="600"/>
 
+**[Live Demo](https://faqahat.github.io/editorjs-text-background-color-plugin/)**
+
 ## Features
 
 - **Text Coloring**: Apply any color from a configurable palette to your selected text.
