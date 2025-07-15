@@ -1,6 +1,6 @@
 {
   "name": "editorjs-text-background-color-plugin",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "An inline tool for changing text and background colors in Editor.js",
   "main": "dist/bundle.js",
   "scripts": {
