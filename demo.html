@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor.js Text Color Plugin</title>
+
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #fafafa;
+      }
+
+      #editorjs {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <script src="./dist/bundle.js"></script>
+    <script src="./plugins/editorjs@latest.js"></script>
+    <script src="./plugins/paragraph@latest.js"></script>
+    <script src="./plugins/header@latest.js"></script>
+    <script src="./plugins/list@latest.js"></script>
+  </head>
+
+  <body>
+    <div id="editorjs"></div>
+
+    <script>
+      // Initialize highlight.js
+
+      // Initialize Editor.js
+      const editor = new EditorJS({
+        holder: "editorjs",
+        autofocus: true,
+        placeholder: "Start writing your content here...",
+
+        tools: {
+          // Custom Tools
+
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar: true,
+            config: {
+              placeholder: "Type your text here...",
+            },
+          },
+          header: {
+            class: Header,
+            inlineToolbar: true,
+            config: {
+              placeholder: "Type your header here...",
+              levels: [1, 2, 3, 4, 5, 6],
+              defaultLevel: 2,
+            },
+          },
+          textColor: {
+            class: TextColorTool,
+            config: {
+              textColors: [
+                { color: "#D6D6D6", name: "light gray" },
+                { color: "#9B9B9B", name: "gray" },
+                { color: "#BA8570", name: "brown" },
+                { color: "#C87D49", name: "orange" },
+                { color: "#C4944B", name: "yellow" },
+                { color: "#344C3E", name: "green" },
+                { color: "#379AD3", name: "blue" },
+                { color: "#9D68D3", name: "purple" },
+                { color: "#D15896", name: "pink" },
+                { color: "#E35958", name: "red" },
+              ],
+              backgroundColors: [
+                { color: "#FFF", name: "white" },
+                { color: "#F8F8F7", name: "Gray" },
+                { color: "#F4EEEE", name: "Brown" },
+                { color: "#FAF3DB", name: "Orange" },
+                { color: "#FCF3DB", name: "Yellow" },
+                { color: "#EDF3EE", name: "Green" },
+                { color: "#E7F3F8", name: "Blue" },
+                { color: "#F8F3FC", name: "Purple" },
+                { color: "#FCF1F6", name: "Pink" },
+                { color: "#FDEBEC", name: "Red" },
+              ],
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
