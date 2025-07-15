@@ -10,30 +10,31 @@ class TextColorTool {
     this.class = "text-color-tool";
 
     // Color palettes - updated to match reference
+    this.theme = this.config.theme || "light";
     this.textColors = this.config.textColors || [
-      { color: "#D6D6D6", name: "light gray" },
-      { color: "#9B9B9B", name: "gray" },
-      { color: "#BA8570", name: "brown" },
-      { color: "#C87D49", name: "orange" },
-      { color: "#C4944B", name: "yellow" },
-      { color: "#344C3E", name: "green" },
-      { color: "#379AD3", name: "blue" },
-      { color: "#9D68D3", name: "purple" },
-      { color: "#D15896", name: "pink" },
-      { color: "#E35958", name: "red" },
+      { name: "light gray", color: { light: "#D6D6D6", dark: "#777777" } },
+      { name: "gray", color: { light: "#9B9B9B", dark: "#AAAAAA" } },
+      { name: "brown", color: { light: "#BA8570", dark: "#D4A390" } },
+      { name: "orange", color: { light: "#C87D49", dark: "#E09561" } },
+      { name: "yellow", color: { light: "#C4944B", dark: "#DDB269" } },
+      { name: "green", color: { light: "#344C3E", dark: "#5A7E68" } },
+      { name: "blue", color: { light: "#379AD3", dark: "#5FB8E7" } },
+      { name: "purple", color: { light: "#9D68D3", dark: "#B987E7" } },
+      { name: "pink", color: { light: "#D15896", dark: "#E577B0" } },
+      { name: "red", color: { light: "#E35958", dark: "#EE7877" } },
     ];
 
     this.backgroundColors = this.config.backgroundColors || [
-      { color: "#252525", name: "dark gray" },
-      { color: "#2F2F2F", name: "black" },
-      { color: "#4A3229", name: "brown" },
-      { color: "#5C3A23", name: "orange" },
-      { color: "#564328", name: "olive" },
-      { color: "#253D30", name: "green" },
-      { color: "#133A4E", name: "blue" },
-      { color: "#3C2D49", name: "purple" },
-      { color: "#4E2C3B", name: "pink" },
-      { color: "#522E2A", name: "red" },
+      { name: "dark gray", color: { light: "#F0F0F0", dark: "#444444" } },
+      { name: "black", color: { light: "#EAEAEA", dark: "#555555" } },
+      { name: "brown", color: { light: "#F4EEEE", dark: "#6A4A3D" } },
+      { name: "orange", color: { light: "#FAF3DB", dark: "#845A3D" } },
+      { name: "olive", color: { light: "#FCF3DB", dark: "#7E6540" } },
+      { name: "green", color: { light: "#EDF3EE", dark: "#41614E" } },
+      { name: "blue", color: { light: "#E7F3F8", dark: "#2B5C74" } },
+      { name: "purple", color: { light: "#F8F3FC", dark: "#5C456D" } },
+      { name: "pink", color: { light: "#FCF1F6", dark: "#744459" } },
+      { name: "red", color: { light: "#FDEBEC", dark: "#784642" } },
     ];
 
     // Recently used colors (stored in localStorage)
@@ -419,7 +420,9 @@ class TextColorTool {
     `;
 
     this.textColors.forEach((colorData) => {
-      const color = typeof colorData === "string" ? colorData : colorData.color;
+      const colorObj = colorData.color || colorData;
+      const color =
+        typeof colorObj === "object" ? colorObj[this.theme] : colorObj;
       const colorButton = this.createColorButton(color, range, "text");
       colorGrid.appendChild(colorButton);
     });
@@ -456,7 +459,9 @@ class TextColorTool {
     `;
 
     this.backgroundColors.forEach((colorData) => {
-      const color = typeof colorData === "string" ? colorData : colorData.color;
+      const colorObj = colorData.color || colorData;
+      const color =
+        typeof colorObj === "object" ? colorObj[this.theme] : colorObj;
       const colorButton = this.createColorButton(color, range, "background");
       colorGrid.appendChild(colorButton);
     });
@@ -680,14 +685,28 @@ class TextColorTool {
 
     if (type === "text") {
       span.style.color = color;
+      span.dataset.colorLight = typeof color === "object" ? color.light : color;
+      span.dataset.colorDark = typeof color === "object" ? color.dark : color;
       // Update state - normalize to lowercase hex
       this.state = true;
       this.currentTextColor = color.toLowerCase();
     } else if (type === "background") {
       span.style.backgroundColor = color;
+      span.dataset.backgroundColorLight =
+        typeof color === "object" ? color.light : color;
+      span.dataset.backgroundColorDark =
+        typeof color === "object" ? color.dark : color;
       // Update state - normalize to lowercase hex
       this.state = true;
       this.currentBackgroundColor = color.toLowerCase();
+    }
+    // Listen for theme changes if provided
+    if (window && window.addEventListener) {
+      window.addEventListener("editorjs-theme-change", (e) => {
+        if (e.detail && (e.detail === "light" || e.detail === "dark")) {
+          this.theme = e.detail;
+        }
+      });
     }
 
     span.appendChild(selectedText);
